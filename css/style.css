@@ -1,22 +1,23 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #ffffff;
-  color: #222;
 }
 
 .sidebar {
   width: 220px;
+  height: 100vh;
   background: #f1f1f1;
-  position: fixed;
-  top: 0; left: 0; bottom: 0;
   padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
   overflow-y: auto;
-  border-right: 2px solid #ddd;
+  border-right: 1px solid #ccc;
 }
 
 .sidebar h2 {
-  margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .sidebar ul {
@@ -24,16 +25,21 @@ body {
   padding: 0;
 }
 
+.sidebar li {
+  margin-bottom: 10px;
+}
+
 .sidebar a {
-  color: #000;
   text-decoration: none;
+  color: #333;
+  font-weight: bold;
 }
 
 .sidebar a:hover {
-  text-decoration: underline;
+  color: #007bff;
 }
 
 .content {
-  margin-left: 240px;
+  margin-left: 250px;
   padding: 20px;
 }

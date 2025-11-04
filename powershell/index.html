@@ -2,30 +2,90 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<title>SQL Jegyzetek</title>
-<link rel="stylesheet" href="../css/style.css">
+<title>PowerShell Jegyzetek</title>
+
+<!-- Highlight.js CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #f1f1f1;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  border-right: 1px solid #ccc;
+}
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+.sidebar a:hover {
+  color: #007bff;
+}
+.content {
+  margin-left: 250px;
+  padding: 20px;
+}
+pre {
+  background: #eee;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+</style>
 </head>
+
 <body>
 
 <div class="sidebar">
   <h2>Jegyzetek</h2>
   <ul>
+    <li><a href="../">🏠 Kezdőlap</a></li>
     <li><a href="../sql/">SQL</a></li>
     <li><a href="../powershell/">PowerShell</a></li>
     <li><a href="../powershell-ise/">PowerShell ISE</a></li>
     <li><a href="../bash/">Bash</a></li>
     <li><a href="../azure/">Azure</a></li>
-    <li><a href="../">⬅ Vissza a főoldalra</a></li>
   </ul>
 </div>
 
 <div class="content">
   <h1>PowerShell Jegyzetek</h1>
 
-  <p>Itt lesznek a jegyzetek…</p>
-  <p><a href="PowerShell2.ps1">PowerShell példa fájl →</a></p>
+  <p><a href="PowerShell2.ps1" download>📥 Letöltés: PowerShell2.ps1</a></p>
 
+  <h2>Kód tartalom</h2>
+
+  <pre><code class="language-powershell">
+# PowerShell script tartalma
+# Ezt automatikusan innen töltöm be fetch() segítségével később
+  </code></pre>
 </div>
+
+
+<!-- Highlight.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/powershell.min.js"></script>
+
+<script>
+// 🔽 Betölti automatikusan a .ps1 fájl tartalmát
+fetch("PowerShell2.ps1")
+.then(r => r.text())
+.then(t => {
+  const code = document.querySelector("code");
+  code.textContent = t;
+  hljs.highlightElement(code);
+});
+</script>
 
 </body>
 </html>

@@ -137,7 +137,8 @@ New-LocalGroup -Name Felhasznalok -Description "Itt lesznek a felhasznalok"
 Add-LocalGroupMember -Group Felhasznalok -Member user1
 Get-LocalGroupMember -Group Felhasznalok
 
-foreach($csoport in Get-LocalGroup){if (Get-LocalGroupMember $csoport -Member user1 -ErrorAction SilentlyContinue){$csoport.name}}
+foreach($csoport in Get-LocalGroup){if (Get-LocalGroupMember $csoport -Member user1 `
+-ErrorAction SilentlyContinue){$csoport.name}}
 
 
 #--------
@@ -190,8 +191,11 @@ Get-ADUser -Identity user2 | Set-ADUser -PasswordNeverExpires:$true
 Set-ADUser -Identity user2 -Title 'Junior rendszeruzemelteto'
 Set-ADUser -Identity user2 -EmailAddress 'user2@ezamail.com' -LogonWorkstations 'win10,win11'
 
-New-ADUser -Name "Nagy Ferenc" -GivenName "Nagy" -Surname "Ferenc" -SamAccountName nagyf -UserPrincipalName nagyf@inter.net -AccountPassword(Read-Host -AsSecureString "jelszo")  -Enabled $true
-New-ADUser -Name Vezeto1 -SamAccountName Vezeto1 -UserPrincipalName vezeto1@inter.net -AccountPassword (ConvertTo-SecureString 'Jelszo1234' -AsPlainText -Force) -Enabled $true -path "OU=TH2,OU=KOZPONT,DC=INTER,DC=NET"
+New-ADUser -Name "Nagy Ferenc" -GivenName "Nagy" -Surname "Ferenc" -SamAccountName nagyf `
+-UserPrincipalName nagyf@inter.net -AccountPassword(Read-Host -AsSecureString "jelszo")  -Enabled $true
+New-ADUser -Name Vezeto1 -SamAccountName Vezeto1 -UserPrincipalName vezeto1@inter.net `
+-AccountPassword (ConvertTo-SecureString 'Jelszo1234' -AsPlainText -Force) -Enabled $true `
+-path "OU=TH2,OU=KOZPONT,DC=INTER,DC=NET"
 
 Get-ADDomain
 Get-ADDomainController
@@ -221,7 +225,8 @@ New-ADUser -Name Dolgozo1 `
 -Enabled $true `
 -Path "OU=TH1,OU=KOZPONT,DC=INTER,DC=NET"
 
-Add-DhcpServerv4Scope -Name "Kiindulas" -StartRange 192.168.10.100 -EndRange 192.168.10.150 -SubnetMask 255.255.255.0 -State Active
+Add-DhcpServerv4Scope -Name "Kiindulas" -StartRange 192.168.10.100 -EndRange 192.168.10.150 `
+-SubnetMask 255.255.255.0 -State Active
 Set-DhcpServerv4OptionValue -ScopeId 192.168.10.0 -Router 192.168.10.1
 Set-DhcpServerv4OptionValue -ScopeId 192.168.10.0 -DnsServer 192.168.10.1 -DnsDomain INTER.NET
 Add-DhcpServerInDC -DnsName 'inter.net' -IPAddress 192.168.10.1
@@ -237,5 +242,7 @@ Install-WindowsFeature -Name Web-server -IncludeAllSubFeature -IncludeManagement
 Add-Computer -DomainName inter.net                                          # DC2
 Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools     # DC2
 Import-Module ADDSDeployment                                                # DC2
-Install-ADDSDomainController -DomainName 'example.com' -InstallDns -ReplicationSourceDC "dc1.example.com" -NoGlobalCatalog:$false -Force:$true -Credential (Get-Credential)
+Install-ADDSDomainController -DomainName 'example.com' -InstallDns -ReplicationSourceDC "dc1.example.com" `
+-NoGlobalCatalog:$false -Force:$true -Credential (Get-Credential)
+
 
